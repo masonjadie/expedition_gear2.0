@@ -1,0 +1,342 @@
+.checkout-modern-wrapper {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+}
+
+/* Left Side: Forms */
+.checkout-left {
+    background: var(--bg-secondary);
+    border-radius: 20px;
+    padding: 2.5rem;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.checkout-header-modern h1 {
+    font-family: 'Outfit', sans-serif;
+    color: var(--jamaica-gold);
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* Stepper Modern */
+.stepper-modern {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.step-mod {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    opacity: 0.3;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.step-mod.active {
+    opacity: 1;
+}
+
+.step-mod .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--border-color);
+}
+
+.step-mod.active .dot {
+    background: var(--jamaica-gold);
+    box-shadow: 0 0 10px var(--jamaica-gold);
+}
+
+.step-mod.completed .dot {
+    background: var(--jamaica-green);
+}
+
+.step-mod .label {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.line {
+    flex: 1;
+    height: 1px;
+    background: var(--border-color);
+}
+
+/* Form Styling */
+.step-pane h2 {
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+}
+
+.modern-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.input-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.input-field label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.input-field input {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    padding: 14px;
+    border-radius: 10px;
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+}
+
+.input-field input:focus {
+    border-color: var(--jamaica-gold);
+    background: rgba(255, 255, 255, 0.05);
+    outline: none;
+}
+
+.input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+/* Payment Icons */
+.payment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.card-icons {
+    display: flex;
+    gap: 0.8rem;
+}
+
+.card-icons img {
+    height: 24px;
+    opacity: 0.7;
+    filter: grayscale(1);
+    transition: opacity 0.3s;
+}
+
+.card-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.card-input-wrapper input {
+    width: 100%;
+}
+
+.security-icon {
+    position: absolute;
+    right: 15px;
+    color: #444;
+}
+
+/* Buttons */
+.btn-modern {
+    padding: 16px 32px;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: none;
+    font-size: 1rem;
+}
+
+.btn-gold {
+    background: var(--jamaica-gold);
+    color: var(--jamaica-black);
+}
+
+.btn-green {
+    background: var(--jamaica-green);
+    color: white;
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+}
+
+.btn-modern:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.btn-modern:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.action-row {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+/* Right Side: Summary Card */
+.checkout-right {
+    position: sticky;
+    top: 6rem;
+}
+
+.summary-card {
+    background: var(--bg-secondary);
+    border-radius: 20px;
+    padding: 2rem;
+    border: 1px solid var(--border-color);
+}
+
+.summary-card h3 {
+    color: var(--jamaica-gold);
+    margin-bottom: 1.5rem;
+    font-family: 'Outfit', sans-serif;
+}
+
+.summary-items {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 1.5rem;
+    padding-right: 10px;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.item-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.item-info strong {
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+.item-info span {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+.summary-totals {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    padding: 1.5rem 0;
+    border-top: 2px solid var(--border-color);
+}
+
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    color: var(--text-secondary);
+}
+
+.total-row.grand {
+    color: var(--jamaica-gold);
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-top: 0.5rem;
+}
+
+.free {
+    color: var(--jamaica-green);
+    font-weight: 700;
+}
+
+.security-badge {
+    text-align: center;
+    margin-top: 2rem;
+    padding: 1rem;
+    border-radius: 12px;
+    background: rgba(0, 155, 58, 0.05);
+}
+
+.jamaica-tag {
+    font-weight: 800;
+    font-size: 0.8rem;
+    color: var(--jamaica-gold);
+}
+
+.security-badge p {
+    font-size: 0.7rem;
+    color: #555;
+    margin-top: 0.4rem;
+}
+
+/* Animations */
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.animate-in {
+    animation: fadeInSlide 0.6s ease-out;
+}
+
+/* Processing View */
+.processing-overlay {
+    text-align: center;
+    padding: 4rem 2rem;
+}
+
+.heritage-spinner {
+    width: 60px;
+    height: 60px;
+    border: 4px solid rgba(255, 215, 0, 0.1);
+    border-top: 4px solid var(--jamaica-gold);
+    border-radius: 50%;
+    animation: spin 1s infinite linear;
+    margin: 0 auto 2rem;
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+    .checkout-modern-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .checkout-right {
+        order: -1;
+        position: static;
+    }
+}

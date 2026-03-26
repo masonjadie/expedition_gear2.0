@@ -1,0 +1,47 @@
+<section class="section dashboard-container">
+    <div class="dashboard-header">
+        <h1>Welcome Back, Heritage Member</h1>
+        <p>Track your orders, manage your profile, and explore exclusive offers.</p>
+    </div>
+
+    <!-- Active Order Status -->
+    <div *ngIf="latestOrder" class="active-order-banner">
+        <div class="banner-content">
+            <div class="order-info">
+                <span class="banner-label">ACTIVE ORDER</span>
+                <h3>#{{latestOrder.id}}</h3>
+            </div>
+            <div class="status-badge" [ngClass]="getDashboardStatusClass()">
+                {{orderStatus}}
+            </div>
+            <a routerLink="/order-processing" class="track-btn">Track Order →</a>
+        </div>
+    </div>
+
+    <div class="dashboard-grid">
+        <div class="stat-card">
+            <h3>Recent Orders</h3>
+            <p class="stat-value">5</p>
+            <a routerLink="/orders">View History</a>
+        </div>
+        <div class="stat-card">
+            <h3>Loyalty Points</h3>
+            <p class="stat-value">450</p>
+            <p>Heritage Gold Status</p>
+        </div>
+        <div class="stat-card">
+            <h3>Saved Items</h3>
+            <p class="stat-value">12</p>
+            <a routerLink="/shop">Continue Shopping</a>
+        </div>
+    </div>
+
+    <div class="quick-actions">
+        <h2>Quick Actions</h2>
+        <div class="action-btns">
+            <a routerLink="/profile" class="btn btn-primary">Edit Profile</a>
+            <a routerLink="/cart" class="btn btn-outline">My Cart</a>
+            <a routerLink="/contact" class="btn btn-outline">Need Help?</a>
+        </div>
+    </div>
+</section>

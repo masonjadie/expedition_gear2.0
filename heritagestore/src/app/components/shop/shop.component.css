@@ -1,0 +1,158 @@
+.shop-container {
+    padding-top: 4rem;
+}
+
+.shop-header {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.shop-header h1 {
+    color: var(--accent-title);
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    font-weight: 900;
+}
+
+.shop-header p {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+}
+
+.shop-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4rem;
+    padding: 2rem;
+    background: var(--bg-secondary);
+    border-radius: 20px;
+    gap: 1.5rem;
+    border: 1px solid var(--border-color);
+}
+
+.search-bar input {
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    width: 400px;
+    outline: none;
+    font-family: inherit;
+    font-weight: 500;
+}
+
+.search-bar input:focus {
+    border-color: var(--jamaica-green);
+}
+
+.filters select {
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    cursor: pointer;
+    outline: none;
+    font-family: inherit;
+    font-weight: 600;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 3rem;
+}
+
+.product-card {
+    background: var(--bg-secondary);
+    border-radius: 25px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.product-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+}
+
+.product-image {
+    position: relative;
+    height: 320px;
+    overflow: hidden;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s;
+}
+
+.product-card:hover .product-image img {
+    transform: scale(1.1);
+}
+
+.category-badge {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    background: var(--jamaica-green);
+    color: #ffffff;
+    padding: 0.5rem 1.2rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    z-index: 2;
+}
+
+.product-info {
+    padding: 2.5rem;
+}
+
+.product-info h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+    font-weight: 800;
+    color: var(--text-primary);
+}
+
+.price {
+    color: var(--jamaica-green);
+    font-weight: 900;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.btn-add-cart {
+    width: 100%;
+    background: transparent;
+    border: 2px solid var(--jamaica-green);
+    color: var(--jamaica-green);
+    padding: 1.2rem;
+    font-weight: 800;
+    border-radius: 15px;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.btn-add-cart:hover {
+    background: var(--jamaica-green);
+    color: white;
+}
+
+@media (max-width: 800px) {
+    .shop-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-bar input {
+        width: 100%;
+    }
+}

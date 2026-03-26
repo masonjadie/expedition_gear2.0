@@ -1,0 +1,222 @@
+.navbar {
+    background-color: var(--navbar-bg);
+    color: var(--text-primary);
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+    border-bottom: 2px solid var(--jamaica-gold);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* ... existing styles ... */
+
+.theme-toggle {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-left: 0.5rem;
+}
+
+.theme-toggle:hover {
+    background: var(--bg-secondary);
+    border-color: var(--jamaica-gold);
+    color: var(--jamaica-gold);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.nav-logo a {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #ffffff;
+    text-decoration: none;
+    letter-spacing: 2px;
+    /* Always white — logo sits on the dark navbar background */
+    text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2.5rem;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li a {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+.nav-links li a:hover,
+.nav-links li a.active {
+    color: var(--jamaica-green);
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.arrow {
+    font-size: 0.7rem;
+    transition: transform 0.3s;
+}
+
+.dropdown:hover .arrow {
+    transform: rotate(180deg);
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--bg-secondary);
+    min-width: 220px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    z-index: 1;
+    top: 100%;
+    left: 0;
+    border-radius: 8px;
+    padding: 0.5rem 0;
+    border: 1px solid var(--border-color);
+}
+
+.dropdown-content a {
+    color: var(--text-primary);
+    padding: 12px 20px;
+    text-decoration: none;
+    display: block;
+    transition: all 0.3s;
+    font-weight: 500;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--bg-primary);
+    color: var(--jamaica-green) !important;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.nav-auth {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.btn-track {
+    color: var(--jamaica-gold);
+    text-decoration: none;
+    font-weight: 600;
+    margin-right: 1.5rem;
+    transition: opacity 0.3s;
+    font-size: 0.9rem;
+}
+
+.btn-track:hover {
+    opacity: 0.8;
+}
+
+.btn-login {
+    color: var(--text-primary);
+    text-decoration: none;
+    padding: 0.6rem 1.2rem;
+    border: 1.5px solid var(--border-color);
+    border-radius: 50px;
+    transition: all 0.3s;
+    font-weight: 700;
+    font-size: 0.85rem;
+}
+
+.btn-login:hover {
+    background-color: var(--text-primary);
+    color: var(--bg-primary);
+}
+
+.btn-register {
+    background-color: var(--jamaica-green);
+    color: var(--white);
+    text-decoration: none;
+    padding: 0.65rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 700;
+    transition: all 0.3s;
+    font-size: 0.85rem;
+}
+
+.btn-register:hover {
+    background-color: #007d2f;
+    transform: translateY(-2px);
+}
+
+.welcome-text {
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-right: 0.5rem;
+    opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        /* In a real app, I'd implement a mobile menu toggle */
+    }
+}
+
+.cart-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+}
+
+.cart-icon {
+    stroke: var(--white);
+    transition: stroke 0.3s;
+}
+
+.cart-link:hover .cart-icon,
+.cart-link.active .cart-icon {
+    stroke: var(--jamaica-gold);
+}
+
+.cart-badge {
+    background-color: var(--jamaica-gold);
+    color: var(--jamaica-black);
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border-radius: 50%;
+    font-weight: 800;
+    position: absolute;
+    top: -8px;
+    right: -12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}

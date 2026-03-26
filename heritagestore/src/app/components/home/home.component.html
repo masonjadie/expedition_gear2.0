@@ -1,0 +1,41 @@
+<section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <span class="hero-tag">PREMIUM OUTDOOR GEAR</span>
+        <h1>Trail Peak Outdoors</h1>
+        <p>Gear up for your next adventure with premium camping, hiking, and outdoor equipment built to perform in the wild.</p>
+        <div class="hero-btns">
+            <a routerLink="/shop" class="btn btn-primary">Shop Gear</a>
+            <a routerLink="/about" class="btn btn-outline">Our Story</a>
+        </div>
+    </div>
+</section>
+
+<section class="section features">
+    <h2 class="section-title">Why Shop With Us?</h2>
+    <div class="feature-grid">
+        <div class="feature-card">
+            <i class="icon">🏕️</i>
+            <h3>Trail-Tested Gear</h3>
+            <p>Every product is field-tested by outdoor enthusiasts in real wilderness conditions.</p>
+        </div>
+        <div class="feature-card">
+            <i class="icon">♻️</i>
+            <h3>Eco-Friendly</h3>
+            <p>We source sustainable materials and support Leave No Trace principles.</p>
+        </div>
+        <div class="feature-card">
+            <i class="icon">🚚</i>
+            <h3>Fast Shipping</h3>
+            <p>Get your gear delivered quickly so you never miss your next adventure.</p>
+        </div>
+    </div>
+</section>
+
+<section class="section cta-section" *ngIf="!authService.isLoggedIn()">
+    <div class="cta-banner">
+        <h2>Join the Trail Peak Club</h2>
+        <p>Sign up now to get 10% off your first order and be first to hear about new gear drops.</p>
+        <a routerLink="/register" class="btn btn-primary">Sign Up Now</a>
+    </div>
+</section>

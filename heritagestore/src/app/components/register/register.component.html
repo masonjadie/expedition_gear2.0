@@ -1,0 +1,83 @@
+<div class="auth-page">
+    <!-- Background orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <div class="auth-panel animate-in">
+        <!-- Brand Side -->
+        <div class="auth-brand">
+            <div class="brand-content">
+                <h1>YAAD MON</h1>
+                <p class="tagline">Authentic Jamaican Heritage</p>
+                <div class="heritage-line"></div>
+                <p class="brand-copy">
+                    Join thousands celebrating Jamaica's rich culture.
+                    Create your account and start your heritage journey today.
+                </p>
+                <div class="flags">🇯🇲</div>
+            </div>
+        </div>
+
+        <!-- Form Side -->
+        <div class="auth-form-side">
+            <div class="form-wrapper">
+                <h2>Join the Family</h2>
+                <p class="form-subtitle">Create your free heritage account</p>
+
+                <div *ngIf="errorMessage" class="error-banner">
+                    <span>⚠</span> {{ errorMessage }}
+                </div>
+
+                <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="modern-auth-form">
+                    <div class="field-group">
+                        <label class="field-label">Full Name</label>
+                        <div class="field-wrap">
+                            <span class="field-icon">👤</span>
+                            <input type="text" formControlName="name" autocomplete="name" placeholder="John Doe">
+                        </div>
+                        <small class="field-error"
+                            *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched">
+                            Full name is required
+                        </small>
+                    </div>
+
+                    <div class="field-group">
+                        <label class="field-label">Email Address</label>
+                        <div class="field-wrap">
+                            <span class="field-icon">✉</span>
+                            <input type="email" formControlName="email" autocomplete="email"
+                                placeholder="you@example.com">
+                        </div>
+                        <small class="field-error"
+                            *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+                            Valid email is required
+                        </small>
+                    </div>
+
+                    <div class="field-group">
+                        <label class="field-label">Password</label>
+                        <div class="field-wrap">
+                            <span class="field-icon">🔐</span>
+                            <input type="password" formControlName="password" autocomplete="new-password"
+                                placeholder="Min. 6 characters">
+                        </div>
+                        <small class="field-error"
+                            *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+                            Password (min 6 chars) is required
+                        </small>
+                    </div>
+
+                    <button type="submit" [disabled]="registerForm.invalid || isLoading" class="auth-btn">
+                        <span *ngIf="!isLoading">Create Account</span>
+                        <span *ngIf="isLoading" class="btn-spinner"></span>
+                    </button>
+                </form>
+
+                <p class="auth-switch">
+                    Already a member? <a routerLink="/login">Sign In</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

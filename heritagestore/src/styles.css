@@ -1,0 +1,187 @@
+/* Google Fonts loaded via <link> preconnect in index.html for better performance */
+
+
+:root {
+    /* Brand Colors */
+    --jamaica-green: #009B3A;
+    --jamaica-gold: #FED100;
+    --jamaica-red: #E12127;
+    --jamaica-black: #000000;
+
+    /* Theme Variables (Default Dark) */
+    --bg-primary: #121212;
+    --bg-secondary: #1e1e1e;
+    --text-primary: #ffffff;
+    --text-secondary: #aaaaaa;
+    --navbar-bg: #000000;
+    --card-bg: #1e1e1e;
+    --border-color: #333333;
+    --white: #ffffff;
+    
+    /* Utility names for backwards compatibility during transition */
+    --bg-dark: var(--bg-primary);
+    --card-dark: var(--card-bg);
+    --text-white: var(--text-primary);
+    --text-muted: var(--text-secondary);
+    /* accent-title: gold on dark, green on light */
+    --accent-title: var(--jamaica-gold);
+}
+
+[data-theme='light'] {
+    --bg-primary: #f8f9fa;
+    --bg-secondary: #ffffff;
+    --text-primary: #1a1a1a;
+    --text-secondary: #555555;
+    --navbar-bg: #0d3d1e;
+    --card-bg: #ffffff;
+    --card-dark: #ffffff;
+    --border-color: #dddddd;
+    --white: #1a1a1a;
+    --jamaica-black: #1a1a1a;
+    /* In light mode, use green instead of gold for text on white backgrounds */
+    --accent-title: var(--jamaica-green);
+}
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+h1,
+h2,
+h3,
+h4,
+.nav-logo {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-primary);
+}
+
+.content-container {
+    min-height: calc(100vh - 80px - 300px);
+}
+
+.section {
+    padding: 5rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.btn {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    border: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+}
+
+.btn-primary {
+    background-color: var(--jamaica-gold);
+    color: var(--jamaica-black);
+}
+
+.btn-primary:hover {
+    background-color: var(--jamaica-green);
+    color: var(--text-white);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 155, 58, 0.4);
+}
+
+.btn-secondary {
+    background-color: var(--jamaica-green);
+    color: var(--text-white);
+}
+
+.btn-secondary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 155, 58, 0.4);
+}
+
+.btn-outline {
+    border: 2px solid var(--white);
+    color: var(--white);
+    background: transparent;
+}
+
+.btn-outline:hover {
+    background: var(--white);
+    color: var(--jamaica-black);
+}
+
+/* Accessibility & Global Enhancements */
+*:focus-visible {
+    outline: 3px solid var(--jamaica-gold);
+    outline-offset: 2px;
+}
+
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--jamaica-gold);
+    color: #000;
+    padding: 8px;
+    z-index: 9999;
+    transition: top 0.2s;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* Cookie Banner */
+.cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #222;
+    color: #fff;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.5);
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.cookie-banner a {
+    color: var(--jamaica-gold);
+    text-decoration: underline;
+}
+
+.cookie-banner .btn {
+    padding: 0.5rem 1.5rem;
+}
+
+/* Screen Reader Only */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}

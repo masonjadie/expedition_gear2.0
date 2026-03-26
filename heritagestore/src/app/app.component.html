@@ -1,0 +1,13 @@
+<app-navbar></app-navbar>
+
+<main id="main-content" class="content-container">
+    <router-outlet></router-outlet>
+</main>
+
+<div class="cookie-banner" *ngIf="showCookieBanner">
+  <p>We use cookies to ensure you get the best experience on our website. <a routerLink="/privacy-policy">Learn more</a></p>
+  <button class="btn btn-primary" (click)="acceptCookies()">Accept</button>
+</div>
+
+<app-notification></app-notification>
+<app-footer></app-footer>

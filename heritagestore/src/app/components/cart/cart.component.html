@@ -1,0 +1,55 @@
+<section class="section cart-container">
+    <div class="cart-header">
+        <h1>Your Shopping Cart</h1>
+        <p *ngIf="cartItems.length > 0">You have {{cartItems.length}} items in your collection.</p>
+    </div>
+
+    <div *ngIf="cartItems.length === 0" class="empty-cart">
+        <div class="empty-icon">🛒</div>
+        <h2>Your cart is empty</h2>
+        <p>Looks like you haven't added any heritage treasures yet.</p>
+        <a routerLink="/shop" class="btn btn-primary">Start Shopping</a>
+    </div>
+
+    <div *ngIf="cartItems.length > 0" class="cart-content">
+        <div class="cart-items-list">
+            <div *ngFor="let item of cartItems" class="cart-item">
+                <div class="item-image">
+                    <img [src]="item.image" [alt]="item.name" loading="lazy">
+                </div>
+                <div class="item-details">
+                    <span class="item-category">{{item.category}}</span>
+                    <h3>{{item.name}}</h3>
+                    <p class="item-price-each">${{item.price}} each</p>
+                </div>
+                <div class="item-quantity">
+                    <button (click)="onUpdateQuantity(item.name, item.quantity - 1)" class="qty-btn">-</button>
+                    <span class="qty-value">{{item.quantity}}</span>
+                    <button (click)="onUpdateQuantity(item.name, item.quantity + 1)" class="qty-btn">+</button>
+                </div>
+                <div class="item-total">
+                    <p>${{item.price * item.quantity}}</p>
+                </div>
+                <button (click)="onRemoveItem(item.name)" class="remove-btn">×</button>
+            </div>
+        </div>
+
+        <div class="cart-summary">
+            <h3>Summary</h3>
+            <div class="summary-row">
+                <span>Subtotal</span>
+                <span>${{totalPrice}}</span>
+            </div>
+            <div class="summary-row">
+                <span>Shipping</span>
+                <span class="free-text">FREE</span>
+            </div>
+            <div class="summary-total">
+                <span>Total</span>
+                <span>${{totalPrice}}</span>
+            </div>
+            <button routerLink="/checkout" class="btn btn-primary checkout-btn">Proceed to Checkout</button>
+            <button (click)="onClearCart()" class="btn-clear">Clear Cart</button>
+        </div>
+    </div>
+</section>

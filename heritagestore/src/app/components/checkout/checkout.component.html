@@ -1,0 +1,153 @@
+<div class="checkout-modern-wrapper animate-in">
+    <div class="checkout-left">
+        <div class="checkout-header-modern">
+            <h1>Secure Heritage Checkout</h1>
+            <div class="stepper-modern">
+                <div class="step-mod" [class.active]="currentStep >= 1" [class.completed]="currentStep > 1">
+                    <span class="dot"></span>
+                    <span class="label">Shipping</span>
+                </div>
+                <div class="line"></div>
+                <div class="step-mod" [class.active]="currentStep >= 2" [class.completed]="currentStep > 2">
+                    <span class="dot"></span>
+                    <span class="label">Payment</span>
+                </div>
+                <div class="line"></div>
+                <div class="step-mod" [class.active]="currentStep >= 3" [class.completed]="currentStep > 3">
+                    <span class="dot"></span>
+                    <span class="label">Review</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="step-content-area">
+            <!-- Step 1: Shipping -->
+            <div *ngIf="currentStep === 1" class="step-pane">
+                <h2>Shipping Details</h2>
+                <form [formGroup]="shippingForm" class="modern-form">
+                    <div class="input-field">
+                        <label>Full Name</label>
+                        <input type="text" formControlName="fullName" placeholder="Jia Mason">
+                    </div>
+                    <div class="input-field">
+                        <label>Shipping Address</label>
+                        <input type="text" formControlName="address" placeholder="42 Kingston Lane">
+                    </div>
+                    <div class="input-row">
+                        <div class="input-field">
+                            <label>City</label>
+                            <input type="text" formControlName="city" placeholder="Kingston">
+                        </div>
+                        <div class="input-field">
+                            <label>Postal Code</label>
+                            <input type="text" formControlName="zipCode" placeholder="00000">
+                        </div>
+                    </div>
+                    <button type="button" class="btn-modern btn-gold" [disabled]="shippingForm.invalid"
+                        (click)="nextStep()">
+                        Continue to Payment
+                    </button>
+                </form>
+            </div>
+
+            <!-- Step 2: Payment Gateway -->
+            <div *ngIf="currentStep === 2" class="step-pane">
+                <div class="payment-header">
+                    <h2>Secure Payment</h2>
+                    <div class="card-icons">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa" loading="lazy">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg"
+                            alt="Mastercard" loading="lazy">
+                    </div>
+                </div>
+                <form [formGroup]="paymentForm" class="modern-form payment-mock">
+                    <div class="input-field">
+                        <label>Card Number</label>
+                        <div class="card-input-wrapper">
+                            <input type="text" formControlName="cardNumber" placeholder="0000 0000 0000 0000">
+                            <i class="fas fa-lock security-icon"></i>
+                        </div>
+                    </div>
+                    <div class="input-row">
+                        <div class="input-field">
+                            <label>Expiry Date</label>
+                            <input type="text" formControlName="expiryDate" placeholder="MM/YY">
+                        </div>
+                        <div class="input-field">
+                            <label>CVV</label>
+                            <input type="password" formControlName="cvv" placeholder="***">
+                        </div>
+                    </div>
+                    <div class="action-row">
+                        <button type="button" class="btn-modern btn-outline" (click)="prevStep()">Back</button>
+                        <button type="button" class="btn-modern btn-gold" [disabled]="paymentForm.invalid"
+                            (click)="nextStep()">
+                            Review Heritage Order
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Step 3: Final Review -->
+            <div *ngIf="currentStep === 3" class="step-pane">
+                <h2>Final Verification</h2>
+                <div class="confirmation-box">
+                    <div class="conf-item">
+                        <span class="title">Delivering to</span>
+                        <p>{{shippingForm.value.fullName}}</p>
+                        <p class="sub">{{shippingForm.value.address}}, {{shippingForm.value.city}}</p>
+                    </div>
+                    <div class="conf-item">
+                        <span class="title">Payment Method</span>
+                        <p>Card ending in {{paymentForm.value.cardNumber.slice(-4)}}</p>
+                    </div>
+                </div>
+                <div class="action-row">
+                    <button type="button" class="btn-modern btn-outline" (click)="prevStep()">Back</button>
+                    <button type="button" class="btn-modern btn-green" (click)="placeOrder()">Complete Purchase</button>
+                </div>
+            </div>
+
+            <!-- Step 4: Loading -->
+            <div *ngIf="currentStep === 4" class="processing-overlay">
+                <div class="heritage-spinner"></div>
+                <h3>Processing your heritage treasure...</h3>
+                <p>Establishing secure connection to SQL Gateway</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Side: Live Order Summary -->
+    <div class="checkout-right">
+        <div class="summary-card">
+            <h3>Order Summary</h3>
+            <div class="summary-items">
+                <div *ngFor="let item of cartItems" class="summary-item">
+                    <div class="item-info">
+                        <strong>{{item.name}}</strong>
+                        <span>Qty: {{item.quantity}}</span>
+                    </div>
+                    <span class="item-price">${{item.price * item.quantity}}</span>
+                </div>
+            </div>
+            <div class="summary-totals">
+                <div class="total-row">
+                    <span>Subtotal</span>
+                    <span>${{totalPrice}}</span>
+                </div>
+                <div class="total-row">
+                    <span>Shipping</span>
+                    <span class="free">FREE</span>
+                </div>
+                <div class="total-row grand">
+                    <span>Grand Total</span>
+                    <span>${{totalPrice}}</span>
+                </div>
+            </div>
+            <div class="security-badge">
+                <span class="jamaica-tag">🇯🇲 YAAD MON AUTHENTIC</span>
+                <p>Encryption: SHA-256 SECURED</p>
+            </div>
+        </div>
+    </div>
+</div>

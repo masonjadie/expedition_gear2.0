@@ -1,0 +1,119 @@
+.dashboard-header {
+    margin-bottom: 4rem;
+}
+
+.dashboard-header h1 {
+    color: var(--jamaica-green);
+    margin-bottom: 0.5rem;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.stat-card {
+    background: var(--bg-secondary);
+    padding: 2rem;
+    border-radius: 12px;
+    border-top: 4px solid var(--jamaica-green);
+    border: 1px solid var(--border-color);
+    border-top: 4px solid var(--jamaica-green);
+}
+
+.stat-card h3 {
+    font-size: 1rem;
+    opacity: 0.7;
+    margin-bottom: 1rem;
+}
+
+.stat-value {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--jamaica-green);
+    margin-bottom: 1rem;
+}
+
+.stat-card a {
+    color: var(--jamaica-green);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.quick-actions h2 {
+    margin-bottom: 2rem;
+}
+
+.action-btns {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* Active Order Banner */
+.active-order-banner {
+    background: linear-gradient(135deg, #1e1e1e 0%, #2a2a2a 100%);
+    border: 1px solid #333;
+    border-left: 4px solid var(--jamaica-green);
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.banner-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.banner-label {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: var(--text-muted);
+    letter-spacing: 2px;
+    margin-bottom: 0.2rem;
+}
+
+.order-info h3 {
+    margin: 0;
+    font-size: 1.4rem;
+}
+
+.status-badge {
+    padding: 0.5rem 1.2rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.status-confirmed { background: #333; color: #fff; }
+.status-processing { background: #555; color: var(--text-primary); border: 1px solid var(--jamaica-green); }
+.status-shipped { background: var(--jamaica-green); color: #fff; }
+.status-delivered { background: var(--white); color: #000; }
+
+.track-btn {
+    color: var(--jamaica-green);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: transform 0.3s;
+}
+
+.track-btn:hover {
+    transform: translateX(5px);
+}
+
+@media (max-width: 600px) {
+    .banner-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

@@ -1,0 +1,91 @@
+<div class="admin-container">
+    <div class="admin-header">
+        <h1>Admin Control Panel</h1>
+        <div class="admin-tabs">
+            <button [class.active]="activeTab === 'products'" (click)="activeTab = 'products'">Products</button>
+            <button [class.active]="activeTab === 'orders'" (click)="activeTab = 'orders'">Orders</button>
+            <button class="btn-reset" (click)="resetProducts()">Reset Products</button>
+        </div>
+    </div>
+
+    <!-- PRODUCT MANAGEMENT -->
+    <div *ngIf="activeTab === 'products'" class="tab-content">
+        <div class="action-bar" style="margin-bottom: 2rem; display: flex; justify-content: flex-end;">
+            <button class="btn-track" style="padding: 1rem 2rem; font-size: 1.1rem; background: var(--jamaica-gold); color: black;" (click)="addNewProduct()">+ Add New Product</button>
+        </div>
+        <div class="product-grid">
+            <div *ngFor="let product of products" class="admin-card product-card">
+                <img [src]="product.image" [alt]="product.name">
+                <div class="card-info">
+                    <h3>{{product.name}}</h3>
+                    <p class="price">${{product.price}}</p>
+                    <div style="display: flex; gap: 10px; margin-top: 1rem;">
+                        <button class="btn-edit" style="flex: 1;" (click)="editProduct(product)">Edit</button>
+                        <button class="btn-edit" style="flex: 1; background: #e74c3c; border-color: #e74c3c; color: white;" (click)="deleteProduct(product.id)">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit Modal (Simplified for LocalStorage demo) -->
+        <div *ngIf="editingProduct" class="edit-modal-overlay">
+            <div class="edit-modal">
+                <h2 *ngIf="!isAddingProduct">Edit {{editingProduct.name}}</h2>
+                <h2 *ngIf="isAddingProduct">Add New Product</h2>
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" [(ngModel)]="editingProduct.name">
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <input type="text" [(ngModel)]="editingProduct.category">
+                </div>
+                <div class="form-group">
+                    <label>Price</label>
+                    <input type="number" [(ngModel)]="editingProduct.price">
+                </div>
+                <div class="form-group">
+                    <label>Image URL</label>
+                    <input type="text" [(ngModel)]="editingProduct.image">
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea [(ngModel)]="editingProduct.description"></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn-save" (click)="saveProduct()">Save Changes</button>
+                    <button class="btn-cancel" (click)="cancelEdit()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ORDER MANAGEMENT -->
+    <div *ngIf="activeTab === 'orders'" class="tab-content">
+        <div class="order-list">
+            <div *ngFor="let order of orders" class="admin-card order-card">
+                <div class="order-header">
+                    <h3>ID: {{order.id}}</h3>
+                    <span class="order-date">{{order.date | date}}</span>
+                </div>
+                <div class="order-body">
+                    <p><strong>Status:</strong> {{order.status}}</p>
+                    <p><strong>Tracking:</strong> {{order.tracking_number || 'Not Shipped'}}</p>
+                    <div class="order-actions">
+                        <select #statusSelect [value]="order.status">
+                            <option value="Confirmed">Confirmed</option>
+                            <option value="Processing">Processing</option>
+                            <option value="Shipped">Shipped</option>
+                            <option value="Delivered">Delivered</option>
+                        </select>
+                        <input #trackingInput type="text" placeholder="Tracking Number" [value]="order.tracking_number || ''">
+                        <button class="btn-update" (click)="updateOrderStatus(order.id, statusSelect.value, trackingInput.value)">Update Status</button>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="orders.length === 0" class="empty-state">
+                <p>No orders to manage.</p>
+            </div>
+        </div>
+    </div>
+</div>

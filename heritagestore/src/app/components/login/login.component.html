@@ -1,0 +1,85 @@
+<div class="auth-page">
+    <!-- Background orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <div class="auth-panel animate-in">
+        <!-- Brand Side -->
+        <div class="auth-brand">
+            <div class="brand-content">
+                <h1>YAAD MON</h1>
+                <p class="tagline">Authentic Jamaican Heritage</p>
+                <div class="heritage-line"></div>
+                <p class="brand-copy">
+                    A curated collection of Jamaica's finest crafts, culture, and legacy.
+                    Log in to continue your heritage journey.
+                </p>
+                <div class="flags">🇯🇲</div>
+            </div>
+        </div>
+
+        <!-- Form Side -->
+        <div class="auth-form-side">
+            <div class="form-wrapper">
+                <!-- Role Switcher Tabs -->
+                <div class="role-tabs">
+                    <button type="button" [class.active]="loginRole === 'user'" (click)="setRole('user')">
+                        👤 User Login
+                    </button>
+                    <button type="button" [class.active]="loginRole === 'admin'" (click)="setRole('admin')">
+                        🔑 Admin Login
+                    </button>
+                </div>
+
+                <h2>{{ loginRole === 'admin' ? 'Admin Access' : 'Welcome Back' }}</h2>
+                <p class="form-subtitle">{{ loginRole === 'admin' ? 'Sign in to the admin control panel' : 'Sign in to your heritage account' }}</p>
+
+                <div *ngIf="loginRole === 'admin'" class="admin-hint">
+                    <span>🛡️</span> Use admin credentials: <strong>admin@trailpeak.com</strong>
+                </div>
+
+                <div *ngIf="errorMessage" class="error-banner">
+                    <span>⚠</span> {{ errorMessage }}
+                </div>
+
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="modern-auth-form">
+                    <div class="field-group">
+                        <label class="field-label">Email Address</label>
+                        <div class="field-wrap">
+                            <span class="field-icon">✉</span>
+                            <input type="email" formControlName="email" autocomplete="email"
+                                placeholder="you@example.com">
+                        </div>
+                        <small class="field-error"
+                            *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+                            Valid email is required
+                        </small>
+                    </div>
+
+                    <div class="field-group">
+                        <label class="field-label">Password</label>
+                        <div class="field-wrap">
+                            <span class="field-icon">🔐</span>
+                            <input type="password" formControlName="password" autocomplete="current-password"
+                                placeholder="••••••••">
+                        </div>
+                        <small class="field-error"
+                            *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+                            Password (min 6 chars) is required
+                        </small>
+                    </div>
+
+                    <button type="submit" [disabled]="loginForm.invalid || isLoading" class="auth-btn">
+                        <span *ngIf="!isLoading">Sign In</span>
+                        <span *ngIf="isLoading" class="btn-spinner"></span>
+                    </button>
+                </form>
+
+                <p class="auth-switch" *ngIf="loginRole === 'user'">
+                    New to Yaad Mon? <a routerLink="/register">Create an Account</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

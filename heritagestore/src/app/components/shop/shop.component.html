@@ -1,0 +1,73 @@
+<section class="section shop-container">
+    <div class="shop-header">
+        <h1>Our Authentic Heritage Collection</h1>
+        <p>Celebrate the spirit of Jamaica with every purchase.</p>
+    </div>
+
+    <!-- APPAREL SECTION -->
+    <h2 class="section-title">Authentic Apparel</h2>
+    <div class="product-grid">
+        <div *ngFor="let product of apparel" class="product-card">
+            <div class="product-image">
+                <img [src]="product.image" [alt]="product.name">
+                <span class="category-badge">{{product.category}}</span>
+            </div>
+            <div class="product-info">
+                <h3>{{product.name}}</h3>
+                <p class="price">${{product.price}}.00</p>
+                <button (click)="onAddToCart(product)" class="btn btn-add-cart">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- HANDCRAFTED SECTION -->
+    <h2 class="section-title" style="margin-top: 6rem;">Handcrafted Treasures</h2>
+    <div class="product-grid">
+        <div *ngFor="let product of handcrafted" class="product-card">
+            <div class="product-image">
+                <img [src]="product.image" [alt]="product.name">
+                <span class="category-badge">{{product.category}}</span>
+            </div>
+            <div class="product-info">
+                <h3>{{product.name}}</h3>
+                <p class="price">${{product.price}}.00</p>
+                <button (click)="onAddToCart(product)" class="btn btn-add-cart">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ESSENTIALS SECTION -->
+    <h2 class="section-title" style="margin-top: 6rem;">Island Essentials</h2>
+    <div class="product-grid">
+        <div *ngFor="let product of essentials" class="product-card">
+            <div class="product-image">
+                <img [src]="product.image" [alt]="product.name">
+                <span class="category-badge"
+                    style="background: var(--jamaica-gold); color: #000;">{{product.category}}</span>
+            </div>
+            <div class="product-info">
+                <h3>{{product.name}}</h3>
+                <p class="price">${{product.price}}.00</p>
+                <button (click)="onAddToCart(product)" class="btn btn-add-cart">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- COLLECTORS SECTION -->
+    <h2 class="section-title" style="margin-top: 6rem;">Premium Collector's Prints</h2>
+    <div class="product-grid">
+        <div *ngFor="let product of collectors" class="product-card">
+            <div class="product-image">
+                <img [src]="product.image" [alt]="product.name"
+                    style="object-fit: contain; padding: 2rem; background: #fff;">
+                <span class="category-badge"
+                    style="background: var(--jamaica-gold); color: #000;">{{product.category}}</span>
+            </div>
+            <div class="product-info">
+                <h3>{{product.name}}</h3>
+                <p class="price">${{product.price}}.00</p>
+                <button (click)="onAddToCart(product)" class="btn btn-add-cart">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+</section>

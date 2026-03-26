@@ -1,0 +1,23 @@
+<section class="section orders-container">
+    <h1>Your Heritage Journey</h1>
+    <div class="orders-list" *ngIf="orders.length > 0; else noOrders">
+        <div class="order-item" *ngFor="let order of orders">
+            <div class="order-meta">
+                <span class="order-id">#{{order.id}}</span>
+                <span class="order-date">{{order.order_date | date:'mediumDate'}}</span>
+                <span class="order-status" [ngClass]="'badge-' + order.status.toLowerCase()">{{order.status}}</span>
+            </div>
+            <div class="order-details">
+                <p>Order Total</p>
+                <p class="order-total">${{order.total_amount}}</p>
+            </div>
+        </div>
+    </div>
+
+    <ng-template #noOrders>
+        <div class="empty-state">
+            <p>You haven't started your heritage story yet.</p>
+            <a routerLink="/shop" class="btn btn-gold">Explore our Collection</a>
+        </div>
+    </ng-template>
+</section>

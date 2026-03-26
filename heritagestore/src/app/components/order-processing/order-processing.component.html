@@ -1,0 +1,62 @@
+<section class="section processing-container" *ngIf="order; else noOrder">
+    <div class="processing-header">
+        <h1>Order Status: {{order.id}}</h1>
+        <p>Thank you for your purchase! We're preparing your heritage items.</p>
+    </div>
+
+    <div class="status-tracker">
+        <div class="step" [class.completed]="isCompleted('Confirmed')" [class.active]="isActive('Confirmed')">
+            <div class="circle">{{ isCompleted('Confirmed') ? '✓' : '1' }}</div>
+            <span>Confirmed</span>
+        </div>
+        <div class="step" [class.completed]="isCompleted('Processing')" [class.active]="isActive('Processing')">
+            <div class="circle">{{ isCompleted('Processing') ? '✓' : '2' }}</div>
+            <span>Processing</span>
+        </div>
+        <div class="step" [class.completed]="isCompleted('Shipped')" [class.active]="isActive('Shipped')">
+            <div class="circle">{{ isCompleted('Shipped') ? '✓' : '3' }}</div>
+            <span>Shipping</span>
+        </div>
+        <div class="step" [class.completed]="isCompleted('Delivered')" [class.active]="isActive('Delivered')">
+            <div class="circle">{{ isCompleted('Delivered') ? '✓' : '4' }}</div>
+            <span>Delivered</span>
+        </div>
+    </div>
+
+    <div class="order-details-box">
+        <h3>Order Summary</h3>
+        <div class="detail-row">
+            <span>Order Date:</span>
+            <strong>{{order.date | date:'mediumDate'}}</strong>
+        </div>
+        <div class="detail-row">
+            <span>Total Amount:</span>
+            <strong>${{order.total}}</strong>
+        </div>
+        <div *ngIf="order.tracking_number" class="detail-row" style="margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #444;">
+            <span>Tracking Number:</span>
+            <strong style="color: var(--jamaica-green); letter-spacing: 1.5px; font-size: 1.1rem;">{{order.tracking_number}}</strong>
+        </div>
+        <div class="items-preview">
+            <div *ngFor="let item of order.items" class="mini-item">
+                <span>{{item.name}} (x{{item.quantity}})</span>
+                <span>${{item.price * item.quantity}}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="actions">
+        <a routerLink="/shop" class="btn btn-outline">Keep Shopping</a>
+        <a routerLink="/contact" class="btn btn-primary">Need Help?</a>
+    </div>
+</section>
+
+<ng-template #noOrder>
+    <section class="section processing-container no-order">
+        <div class="processing-header">
+            <h1>No Active Order</h1>
+            <p>You haven't placed any orders recently.</p>
+            <a routerLink="/shop" class="btn btn-gold">Browse our Collection</a>
+        </div>
+    </section>
+</ng-template>
