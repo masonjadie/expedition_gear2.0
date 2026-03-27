@@ -4,11 +4,15 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 require('dotenv').config();
 
+const fileUpload = require('express-fileupload');
+const { XMLParser, XMLBuilder } = require('fast-xml-parser');
+
 const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use(fileUpload());
 
 // MySQL Connection Pool
 const pool = mysql.createPool({
@@ -116,6 +120,129 @@ app.put('/api/products/:id', async (req, res) => {
         res.json({ message: 'Product updated' });
     } catch (err) {
         res.status(500).json({ error: 'Failed to update product', details: err.message });
+    }
+});
+
+// --- XML Integration Routes ---
+
+app.get('/sitemap.xml', async (req, res) => {
+    try {
+        const [products] = await pool.query('SELECT id FROM product');
+        
+        let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
+        xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
+        xml += `  <url><loc>http://localhost:4200/</loc><changefreq>daily</changefreq></url>\n`;
+        xml += `  <url><loc>http://localhost:4200/shop</loc><changefreq>daily</changefreq></url>\n`;
+        
+        products.forEach(p => {
+            xml += `  <url>\n    <loc>http://localhost:4200/shop/${p.id}</loc>\n    <changefreq>weekly</changefreq>\n  </url>\n`;
+        });
+        
+        xml += `</urlset>`;
+        
+        res.header('Content-Type', 'application/xml');
+        res.send(xml);
+    } catch (err) {
+        res.status(500).send('Error generating sitemap');
+    }
+});
+
+app.get('/api/feed.xml', async (req, res) => {
+    try {
+        const [products] = await pool.query('SELECT * FROM product');
+        
+        const feedObj = {
+            rss: {
+                "@_version": "2.0",
+                channel: {
+                    title: "Expedition Gear Store",
+                    link: "http://localhost:4200",
+                    description: "Authentic Camping, Hiking, and Apparel Gear",
+                    item: products.map(p => ({
+                        title: p.name,
+                        link: `http://localhost:4200/shop/${p.id}`,
+                        description: p.description,
+                        category: p.category,
+                        price: p.price,
+                        image: p.image
+                    }))
+                }
+            }
+        };
+
+        const builder = new XMLBuilder({ ignoreAttributes: false, format: true });
+        const xml = builder.build(feedObj);
+        
+        res.header('Content-Type', 'application/xml');
+        res.send(`<?xml version="1.0" encoding="UTF-8"?>\n` + xml);
+    } catch (err) {
+        res.status(500).send('Error generating feed');
+    }
+});
+
+app.get('/api/products/export', async (req, res) => {
+    try {
+        const [products] = await pool.query('SELECT * FROM product');
+        
+        const exportObj = {
+            products: {
+                product: products
+            }
+        };
+        
+        const builder = new XMLBuilder({ format: true });
+        const xml = builder.build(exportObj);
+        
+        res.header('Content-Type', 'application/xml');
+        res.attachment('products_export.xml');
+        res.send(`<?xml version="1.0" encoding="UTF-8"?>\n` + xml);
+    } catch (err) {
+        res.status(500).json({ error: 'Failed to export products' });
+    }
+});
+
+app.post('/api/products/import', async (req, res) => {
+    if (!req.files || Object.keys(req.files).length === 0 || !req.files.xmlFile) {
+        return res.status(400).json({ error: 'No XML file provided.' });
+    }
+
+    try {
+        const xmlData = req.files.xmlFile.data.toString('utf8');
+        const parser = new XMLParser({ ignoreAttributes: false });
+        let jsonObj = parser.parse(xmlData);
+
+        let products = jsonObj?.products?.product;
+        if (!products) {
+             return res.status(400).json({ error: 'Invalid XML format. Must contain <products><product>...</product></products>' });
+        }
+        
+        if (!Array.isArray(products)) {
+            products = [products];
+        }
+
+        const connection = await pool.getConnection();
+        await connection.beginTransaction();
+
+        try {
+            await connection.query('TRUNCATE TABLE product');
+
+            for (const p of products) {
+                await connection.query(
+                    'INSERT INTO product (name, price, description, image, category) VALUES (?, ?, ?, ?, ?)',
+                    [p.name, p.price, p.description, p.image, p.category]
+                );
+            }
+
+            await connection.commit();
+            res.json({ message: `Successfully imported ${products.length} products.` });
+        } catch (err) {
+            await connection.rollback();
+            throw err;
+        } finally {
+            connection.release();
+        }
+    } catch (err) {
+        res.status(500).json({ error: 'Failed to parse and import XML', details: err.message });
     }
 });
 
