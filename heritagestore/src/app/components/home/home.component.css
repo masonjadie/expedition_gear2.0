@@ -1,14 +1,24 @@
 .hero {
     height: 90vh;
+    min-height: 600px;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=2070');
-    background-size: cover;
-    background-position: center;
-    color: white;
+    color: #ffffff;
+    overflow: hidden;
+    background-color: #121212; /* Fallback for CLS */
+}
+
+.hero-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
 }
 
 .hero-overlay {
@@ -18,6 +28,7 @@
     right: 0;
     bottom: 0;
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8));
+    z-index: 2;
 }
 
 .hero-content {
@@ -41,7 +52,7 @@
     font-size: 5rem;
     font-weight: 900;
     margin-bottom: 2rem;
-    color: var(--white);
+    color: #ffffff;
     text-transform: uppercase;
     letter-spacing: -2px;
     line-height: 1;
@@ -63,6 +74,26 @@
     justify-content: center;
     animation: fadeInUp 1s ease-out 0.6s forwards;
     opacity: 0;
+}
+
+.hero .btn-outline {
+    border-color: #ffffff !important;
+    color: #ffffff !important;
+}
+
+.hero .btn-outline:hover {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+}
+
+.hero .btn-primary {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+}
+
+.hero .btn-primary:hover {
+    background-color: var(--jamaica-green) !important;
+    color: #ffffff !important;
 }
 
 .section-title {

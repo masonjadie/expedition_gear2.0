@@ -99,13 +99,14 @@
     font-family: 'Outfit', sans-serif;
     font-size: 3rem;
     font-weight: 900;
-    color: var(--jamaica-gold);
+    color: #ffffff !important;
     letter-spacing: 6px;
     margin-bottom: 0.5rem;
 }
 
 .tagline {
-    color: rgba(255, 255, 255, 0.5);
+    color: #ffffff !important;
+    opacity: 0.9;
     font-size: 0.85rem;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -121,7 +122,8 @@
 }
 
 .brand-copy {
-    color: rgba(255, 255, 255, 0.6);
+    color: #ffffff !important;
+    opacity: 0.95;
     font-size: 0.95rem;
     line-height: 1.7;
     margin-bottom: 2rem;

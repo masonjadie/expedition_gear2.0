@@ -8,14 +8,14 @@
         <!-- Brand Side -->
         <div class="auth-brand">
             <div class="brand-content">
-                <h1>YAAD MON</h1>
-                <p class="tagline">Authentic Jamaican Heritage</p>
+                <h1>TRAIL PEAK OUTDOOR</h1>
+                <p class="tagline">Premium Outdoor Gear & Equipment</p>
                 <div class="heritage-line"></div>
                 <p class="brand-copy">
-                    A curated collection of Jamaica's finest crafts, culture, and legacy.
-                    Log in to continue your heritage journey.
+                    Your ultimate destination for quality hiking, camping, and outdoor gear.
+                    Log in to gear up for your next adventure.
                 </p>
-                <div class="flags">🇯🇲</div>
+                <div class="flags">🏔️</div>
             </div>
         </div>
 
@@ -33,7 +33,7 @@
                 </div>
 
                 <h2>{{ loginRole === 'admin' ? 'Admin Access' : 'Welcome Back' }}</h2>
-                <p class="form-subtitle">{{ loginRole === 'admin' ? 'Sign in to the admin control panel' : 'Sign in to your heritage account' }}</p>
+                <p class="form-subtitle">{{ loginRole === 'admin' ? 'Sign in to the admin control panel' : 'Sign in to your outdoor gear account' }}</p>
 
                 <div *ngIf="loginRole === 'admin'" class="admin-hint">
                     <span>🛡️</span> Use admin credentials: <strong>admin@trailpeak.com</strong>
@@ -77,7 +77,7 @@
                 </form>
 
                 <p class="auth-switch" *ngIf="loginRole === 'user'">
-                    New to Yaad Mon? <a routerLink="/register">Create an Account</a>
+                    New to Trail Peak? <a routerLink="/register">Create an Account</a>
                 </p>
             </div>
         </div>

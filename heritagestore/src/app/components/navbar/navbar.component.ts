@@ -14,6 +14,7 @@ export class NavbarComponent implements OnInit {
   cartItemCount: number = 0;
   currentUrl: string = '';
   userName: string = '';
+  isMenuOpen: boolean = false;
 
   constructor(
     public authService: AuthService,
@@ -52,5 +53,13 @@ export class NavbarComponent implements OnInit {
 
   toggleTheme() {
     this.themeService.toggleTheme();
+  }
+
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  closeMenu() {
+    this.isMenuOpen = false;
   }
 }

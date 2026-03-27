@@ -3,8 +3,14 @@
 }
 
 .dashboard-header h1 {
-    color: var(--jamaica-green);
+    color: var(--text-primary);
     margin-bottom: 0.5rem;
+    line-height: 1.2;
+}
+
+.heritage-text {
+    color: var(--jamaica-green);
+    font-weight: 900;
 }
 
 .dashboard-grid {
@@ -75,7 +81,7 @@
     display: block;
     font-size: 0.7rem;
     font-weight: 800;
-    color: var(--text-muted);
+    color: #aaaaaa;
     letter-spacing: 2px;
     margin-bottom: 0.2rem;
 }
@@ -83,6 +89,7 @@
 .order-info h3 {
     margin: 0;
     font-size: 1.4rem;
+    color: #ffffff;
 }
 
 .status-badge {
@@ -94,10 +101,10 @@
     letter-spacing: 1px;
 }
 
-.status-confirmed { background: #333; color: #fff; }
-.status-processing { background: #555; color: var(--text-primary); border: 1px solid var(--jamaica-green); }
-.status-shipped { background: var(--jamaica-green); color: #fff; }
-.status-delivered { background: var(--white); color: #000; }
+.status-confirmed { background: #333; color: #ffffff; border: 1px solid #444; }
+.status-processing { background: #444; color: #ffffff; border: 1px solid var(--jamaica-green); }
+.status-shipped { background: var(--jamaica-green); color: #ffffff; }
+.status-delivered { background: #ffffff; color: #000000; border: 1px solid #ffffff; }
 
 .track-btn {
     color: var(--jamaica-green);
@@ -111,9 +118,46 @@
     transform: translateX(5px);
 }
 
+.tracking-info-mini {
+    margin-left: auto;
+    margin-right: 1.5rem;
+    text-align: right;
+}
+
+.tracking-label {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.6);
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.tracking-number {
+    color: var(--jamaica-gold);
+    font-family: monospace;
+    font-size: 1.1rem;
+}
+
 @media (max-width: 600px) {
+    .dashboard-header h1 {
+        font-size: 2.2rem;
+        line-height: 1.3;
+    }
+    
+    .heritage-text {
+        display: block;
+        margin-top: 0.5rem;
+    }
+
     .banner-content {
         flex-direction: column;
         align-items: flex-start;
+        gap: 1.5rem;
+    }
+
+    .tracking-info-mini {
+        margin-left: 0;
+        margin-right: 0;
+        text-align: left;
     }
 }

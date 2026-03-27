@@ -4,14 +4,21 @@
         <div class="admin-tabs">
             <button [class.active]="activeTab === 'products'" (click)="activeTab = 'products'">Products</button>
             <button [class.active]="activeTab === 'orders'" (click)="activeTab = 'orders'">Orders</button>
-            <button class="btn-reset" (click)="resetProducts()">Reset Products</button>
         </div>
     </div>
 
     <!-- PRODUCT MANAGEMENT -->
     <div *ngIf="activeTab === 'products'" class="tab-content">
-        <div class="action-bar" style="margin-bottom: 2rem; display: flex; justify-content: flex-end;">
-            <button class="btn-track" style="padding: 1rem 2rem; font-size: 1.1rem; background: var(--jamaica-gold); color: black;" (click)="addNewProduct()">+ Add New Product</button>
+        <div class="action-bar" style="margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; background: var(--bg-secondary); padding: 1rem 2rem; border-radius: 12px; border: 1px solid var(--border-color);">
+            <div class="xml-actions" style="display: flex; gap: 1rem; align-items: center;">
+                <h3 style="margin: 0; margin-right: 1rem; font-size: 1.1rem;">Bulk Data Sync</h3>
+                <button class="btn-outline" style="padding: 0.6rem 1.5rem;" (click)="exportXML()">Export XML</button>
+                <div style="position: relative;">
+                    <input type="file" #fileInput (change)="importXML($event)" style="display: none;" accept=".xml">
+                    <button class="btn-outline" style="padding: 0.6rem 1.5rem;" (click)="fileInput.click()">Import XML</button>
+                </div>
+            </div>
+            <button class="btn-track" style="padding: 0.8rem 2rem; font-size: 1rem; background: var(--jamaica-gold); color: black; border-radius: 50px; border: none; font-weight: bold; cursor: pointer;" (click)="addNewProduct()">+ Add New Product</button>
         </div>
         <div class="product-grid">
             <div *ngFor="let product of products" class="admin-card product-card">
@@ -38,7 +45,11 @@
                 </div>
                 <div class="form-group">
                     <label>Category</label>
-                    <input type="text" [(ngModel)]="editingProduct.category">
+                    <select [(ngModel)]="editingProduct.category" style="width: 100%; padding: 0.8rem; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-secondary); color: var(--text-primary); font-family: inherit; font-size: 0.95rem;">
+                        <option value="Camping">Camping</option>
+                        <option value="Hiking">Hiking</option>
+                        <option value="Apparel">Apparel</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label>Price</label>
@@ -70,7 +81,13 @@
                 </div>
                 <div class="order-body">
                     <p><strong>Status:</strong> {{order.status}}</p>
-                    <p><strong>Tracking:</strong> {{order.tracking_number || 'Not Shipped'}}</p>
+                    <p *ngIf="order.status === 'Shipped' || order.status === 'Delivered'">
+                        <strong>Tracking Number:</strong> 
+                        <span style="background: var(--jamaica-green); color: white; padding: 2px 8px; border-radius: 4px; font-family: monospace; font-size: 1rem; margin-left: 5px;">{{order.tracking_number}}</span>
+                    </p>
+                    <p *ngIf="order.status !== 'Shipped' && order.status !== 'Delivered'">
+                        <strong>Tracking:</strong> {{order.tracking_number || 'Not Shipped'}}
+                    </p>
                     <div class="order-actions">
                         <select #statusSelect [value]="order.status">
                             <option value="Confirmed">Confirmed</option>

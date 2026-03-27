@@ -1,73 +1,50 @@
 <section class="section shop-container">
     <div class="shop-header">
-        <h1>Our Authentic Heritage Collection</h1>
-        <p>Celebrate the spirit of Jamaica with every purchase.</p>
+        <h1>Trail Peak Adventure Collection</h1>
+        <p>Expertly curated gear for your next journey.</p>
     </div>
 
-    <!-- APPAREL SECTION -->
-    <h2 class="section-title">Authentic Apparel</h2>
-    <div class="product-grid">
-        <div *ngFor="let product of apparel" class="product-card">
+    <!-- Filters -->
+    <div class="shop-controls">
+        <div class="search-bar" style="position: relative;">
+            <svg aria-hidden="true" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); width: 20px; height: 20px; stroke: var(--text-muted); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;" viewBox="0 0 24 24">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" [(ngModel)]="searchQuery" (input)="applyFilters()" placeholder="Search adventure gear..." aria-label="Search adventure gear" style="padding-left: 3rem; width: 400px;">
+        </div>
+        
+        <div class="filters">
+            <select [(ngModel)]="selectedActivity" (change)="applyFilters()" aria-label="Filter by activity">
+                <option value="">All Activities</option>
+                <option *ngFor="let activity of categories" [value]="activity">{{activity}}</option>
+            </select>
+            
+            <div class="price-filter" style="display: flex; align-items: center; gap: 1rem;">
+                <label for="price-range" style="font-weight: 600; color: var(--text-primary)">Max Price: ${{maxPrice}}</label>
+                <input type="range" id="price-range" min="0" max="500" [(ngModel)]="maxPrice" (input)="applyFilters()" style="cursor: pointer;">
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="product-grid" *ngIf="filteredProducts.length > 0">
+        <div *ngFor="let product of filteredProducts; let i = index" class="product-card">
             <div class="product-image">
-                <img [src]="product.image" [alt]="product.name">
+                <img [src]="product.image" [alt]="product.name" [attr.loading]="i < 3 ? 'eager' : 'lazy'" [attr.fetchpriority]="i === 0 ? 'high' : null">
                 <span class="category-badge">{{product.category}}</span>
             </div>
             <div class="product-info">
                 <h3>{{product.name}}</h3>
-                <p class="price">${{product.price}}.00</p>
-                <button (click)="onAddToCart(product)" class="btn btn-add-cart">Add to Cart</button>
+                <p class="price">${{product.price | number:'1.2-2'}}</p>
+                <button (click)="onAddToCart(product)" class="btn btn-add-cart" [attr.aria-label]="'Add ' + product.name + ' to cart'">Add to Cart</button>
             </div>
         </div>
     </div>
-
-    <!-- HANDCRAFTED SECTION -->
-    <h2 class="section-title" style="margin-top: 6rem;">Handcrafted Treasures</h2>
-    <div class="product-grid">
-        <div *ngFor="let product of handcrafted" class="product-card">
-            <div class="product-image">
-                <img [src]="product.image" [alt]="product.name">
-                <span class="category-badge">{{product.category}}</span>
-            </div>
-            <div class="product-info">
-                <h3>{{product.name}}</h3>
-                <p class="price">${{product.price}}.00</p>
-                <button (click)="onAddToCart(product)" class="btn btn-add-cart">Add to Cart</button>
-            </div>
-        </div>
+    
+    <!-- Empty State -->
+    <div *ngIf="filteredProducts.length === 0" class="empty-state" style="text-align: center; padding: 4rem;">
+        <h3 style="color: var(--text-muted); font-size: 1.5rem;">No products found matching your filters.</h3>
+        <p style="margin-top: 1rem; color: var(--text-muted)">Try adjusting your search or activity category.</p>
     </div>
-
-    <!-- ESSENTIALS SECTION -->
-    <h2 class="section-title" style="margin-top: 6rem;">Island Essentials</h2>
-    <div class="product-grid">
-        <div *ngFor="let product of essentials" class="product-card">
-            <div class="product-image">
-                <img [src]="product.image" [alt]="product.name">
-                <span class="category-badge"
-                    style="background: var(--jamaica-gold); color: #000;">{{product.category}}</span>
-            </div>
-            <div class="product-info">
-                <h3>{{product.name}}</h3>
-                <p class="price">${{product.price}}.00</p>
-                <button (click)="onAddToCart(product)" class="btn btn-add-cart">Add to Cart</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- COLLECTORS SECTION -->
-    <h2 class="section-title" style="margin-top: 6rem;">Premium Collector's Prints</h2>
-    <div class="product-grid">
-        <div *ngFor="let product of collectors" class="product-card">
-            <div class="product-image">
-                <img [src]="product.image" [alt]="product.name"
-                    style="object-fit: contain; padding: 2rem; background: #fff;">
-                <span class="category-badge"
-                    style="background: var(--jamaica-gold); color: #000;">{{product.category}}</span>
-            </div>
-            <div class="product-info">
-                <h3>{{product.name}}</h3>
-                <p class="price">${{product.price}}.00</p>
-                <button (click)="onAddToCart(product)" class="btn btn-add-cart">Add to Cart</button>
-            </div>
-        </div>
-    </div>
-</section>
+</section>

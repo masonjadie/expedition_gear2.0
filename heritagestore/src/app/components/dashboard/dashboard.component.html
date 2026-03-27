@@ -1,7 +1,7 @@
 <section class="section dashboard-container">
     <div class="dashboard-header">
-        <h1>Welcome Back, Heritage Member</h1>
-        <p>Track your orders, manage your profile, and explore exclusive offers.</p>
+        <h1>Welcome Back, <span class="heritage-text">Heritage Member</span></h1>
+        <p>Manage your exploration gear, track orders, and view your exclusive member benefits below.</p>
     </div>
 
     <!-- Active Order Status -->
@@ -13,6 +13,10 @@
             </div>
             <div class="status-badge" [ngClass]="getDashboardStatusClass()">
                 {{orderStatus}}
+            </div>
+            <div *ngIf="latestOrder.tracking_number" class="tracking-info-mini">
+                <span class="tracking-label">Tracking</span>
+                <strong class="tracking-number">{{latestOrder.tracking_number}}</strong>
             </div>
             <a routerLink="/order-processing" class="track-btn">Track Order →</a>
         </div>
@@ -27,7 +31,7 @@
         <div class="stat-card">
             <h3>Loyalty Points</h3>
             <p class="stat-value">450</p>
-            <p>Heritage Gold Status</p>
+            <p>Mountain Peak Elite</p>
         </div>
         <div class="stat-card">
             <h3>Saved Items</h3>
@@ -40,6 +44,7 @@
         <h2>Quick Actions</h2>
         <div class="action-btns">
             <a routerLink="/profile" class="btn btn-primary">Edit Profile</a>
+            <a routerLink="/profile" class="btn btn-outline">Shipping & Payments</a>
             <a routerLink="/cart" class="btn btn-outline">My Cart</a>
             <a routerLink="/contact" class="btn btn-outline">Need Help?</a>
         </div>

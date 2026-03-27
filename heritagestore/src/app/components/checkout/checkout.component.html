@@ -1,7 +1,7 @@
 <div class="checkout-modern-wrapper animate-in">
     <div class="checkout-left">
         <div class="checkout-header-modern">
-            <h1>Secure Heritage Checkout</h1>
+            <h1>Secure Adventure Checkout</h1>
             <div class="stepper-modern">
                 <div class="step-mod" [class.active]="currentStep >= 1" [class.completed]="currentStep > 1">
                     <span class="dot"></span>
@@ -82,7 +82,7 @@
                         <button type="button" class="btn-modern btn-outline" (click)="prevStep()">Back</button>
                         <button type="button" class="btn-modern btn-gold" [disabled]="paymentForm.invalid"
                             (click)="nextStep()">
-                            Review Heritage Order
+                            Review Adventure Order
                         </button>
                     </div>
                 </form>
@@ -111,7 +111,7 @@
             <!-- Step 4: Loading -->
             <div *ngIf="currentStep === 4" class="processing-overlay">
                 <div class="heritage-spinner"></div>
-                <h3>Processing your heritage treasure...</h3>
+                <h3>Preparing your gear for the peak...</h3>
                 <p>Establishing secure connection to SQL Gateway</p>
             </div>
         </div>
@@ -145,7 +145,7 @@
                 </div>
             </div>
             <div class="security-badge">
-                <span class="jamaica-tag">🇯🇲 YAAD MON AUTHENTIC</span>
+                <span class="jamaica-tag">🏔️ TRAIL PEAK AUTHENTIC</span>
                 <p>Encryption: SHA-256 SECURED</p>
             </div>
         </div>

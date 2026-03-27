@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../services/cart.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,10 +10,16 @@ import { CartService } from '../../services/cart.service';
 export class DashboardComponent implements OnInit {
   latestOrder: any;
   orderStatus: string = '';
+  userName: string = 'Member';
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService, private authService: AuthService) { }
 
   ngOnInit(): void {
+    const user = this.authService.getCurrentUser();
+    if (user && user.name) {
+      this.userName = user.name;
+    }
+    
     this.latestOrder = this.cartService.getLastOrder();
     if (this.latestOrder) {
       this.orderStatus = this.cartService.getOrderStatus(this.latestOrder);

@@ -5,9 +5,9 @@
     </div>
 
     <div *ngIf="cartItems.length === 0" class="empty-cart">
-        <div class="empty-icon">🛒</div>
+        <div class="empty-icon" aria-hidden="true">🛒</div>
         <h2>Your cart is empty</h2>
-        <p>Looks like you haven't added any heritage treasures yet.</p>
+        <p>Looks like you haven't added any adventure gear essentials yet.</p>
         <a routerLink="/shop" class="btn btn-primary">Start Shopping</a>
     </div>
 
@@ -23,14 +23,14 @@
                     <p class="item-price-each">${{item.price}} each</p>
                 </div>
                 <div class="item-quantity">
-                    <button (click)="onUpdateQuantity(item.name, item.quantity - 1)" class="qty-btn">-</button>
+                    <button (click)="onUpdateQuantity(item.name, item.quantity - 1)" class="qty-btn" [attr.aria-label]="'Decrease quantity of ' + item.name">-</button>
                     <span class="qty-value">{{item.quantity}}</span>
-                    <button (click)="onUpdateQuantity(item.name, item.quantity + 1)" class="qty-btn">+</button>
+                    <button (click)="onUpdateQuantity(item.name, item.quantity + 1)" class="qty-btn" [attr.aria-label]="'Increase quantity of ' + item.name">+</button>
                 </div>
                 <div class="item-total">
                     <p>${{item.price * item.quantity}}</p>
                 </div>
-                <button (click)="onRemoveItem(item.name)" class="remove-btn">×</button>
+                <button (click)="onRemoveItem(item.name)" class="remove-btn" [attr.aria-label]="'Remove ' + item.name + ' from cart'">×</button>
             </div>
         </div>
 

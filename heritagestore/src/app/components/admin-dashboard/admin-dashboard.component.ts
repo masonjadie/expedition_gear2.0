@@ -38,6 +38,18 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   // Product Management
+  exportXML() {
+    this.productService.exportXML();
+  }
+
+  importXML(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      this.productService.importXML(file);
+      this.notificationService.show('XML Import processing... the grid will refresh shortly.');
+    }
+  }
+
   editProduct(product: Product) {
     console.log('Editing product:', product.name);
     this.editingProduct = { ...product };
@@ -74,12 +86,6 @@ export class AdminDashboardComponent implements OnInit {
       this.editingProduct = null;
       this.isAddingProduct = false;
     }
-  }
-
-  resetProducts() {
-    console.log('Resetting products...');
-    localStorage.removeItem('th_products');
-    location.reload();
   }
 
   cancelEdit() {

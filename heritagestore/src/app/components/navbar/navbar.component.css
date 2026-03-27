@@ -15,7 +15,7 @@
 .theme-toggle {
     background: transparent;
     border: 1px solid var(--border-color);
-    color: var(--text-primary);
+    color: #ffffff;
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -60,7 +60,7 @@
 }
 
 .nav-links li a {
-    color: var(--text-primary);
+    color: #ffffff;
     text-decoration: none;
     font-weight: 600;
     transition: all 0.3s;
@@ -107,7 +107,7 @@
     border: 1px solid var(--border-color);
 }
 
-.dropdown-content a {
+.nav-links li .dropdown-content a {
     color: var(--text-primary);
     padding: 12px 20px;
     text-decoration: none;
@@ -145,10 +145,10 @@
 }
 
 .btn-login {
-    color: var(--text-primary);
+    color: #ffffff;
     text-decoration: none;
     padding: 0.6rem 1.2rem;
-    border: 1.5px solid var(--border-color);
+    border: 1.5px solid #ffffff;
     border-radius: 50px;
     transition: all 0.3s;
     font-weight: 700;
@@ -156,13 +156,13 @@
 }
 
 .btn-login:hover {
-    background-color: var(--text-primary);
-    color: var(--bg-primary);
+    background-color: #ffffff;
+    color: var(--jamaica-black);
 }
 
 .btn-register {
     background-color: var(--jamaica-green);
-    color: var(--white);
+    color: #ffffff;
     text-decoration: none;
     padding: 0.65rem 1.5rem;
     border-radius: 50px;
@@ -177,17 +177,107 @@
 }
 
 .welcome-text {
-    color: var(--text-primary);
+    color: #ffffff;
     font-weight: 600;
     font-size: 0.9rem;
     margin-right: 0.5rem;
     opacity: 0.9;
 }
 
-@media (max-width: 768px) {
+/* Hamburger Menu Toggle */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+}
+
+.menu-toggle span {
+    width: 100%;
+    height: 3px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.menu-toggle.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+@media (max-width: 992px) {
+    .menu-toggle {
+        display: flex;
+    }
+
+    .nav-content {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        background-color: var(--navbar-bg);
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 8rem 2rem 2rem;
+        transition: right 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+        box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+        z-index: 1000;
+        gap: 3rem;
+    }
+
+    .nav-content.active {
+        right: 0;
+    }
+
     .nav-links {
-        display: none;
-        /* In a real app, I'd implement a mobile menu toggle */
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: 2rem;
+    }
+
+    .nav-links li a {
+        font-size: 1.2rem;
+    }
+
+    .nav-auth {
+        flex-direction: column;
+        width: 100%;
+        gap: 1.5rem;
+    }
+
+    .btn-track, .btn-login, .btn-register {
+        width: 100%;
+        text-align: center;
+        margin: 0 !important;
+    }
+
+    .dropdown-content {
+        position: static;
+        box-shadow: none;
+        background-color: rgba(255,255,255,0.05);
+        min-width: 100%;
+        margin-top: 1rem;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
     }
 }
 
@@ -199,7 +289,7 @@
 }
 
 .cart-icon {
-    stroke: var(--white);
+    stroke: #ffffff;
     transition: stroke 0.3s;
 }
 

@@ -1,6 +1,6 @@
 .footer {
     background-color: var(--navbar-bg);
-    color: var(--text-primary);
+    color: #ffffff;
     padding: 6rem 2rem 2rem;
     margin-top: 0;
     position: relative;
@@ -48,7 +48,7 @@
 
 .footer-section p {
     line-height: 1.8;
-    opacity: 0.8;
+    opacity: 0.9;
 }
 
 .footer-section ul {
@@ -62,9 +62,9 @@
 }
 
 .footer-section ul li a {
-    color: var(--text-primary);
+    color: #ffffff;
     text-decoration: none;
-    opacity: 0.7;
+    opacity: 0.8;
     transition: all 0.3s;
 }
 
@@ -81,7 +81,7 @@
 }
 
 .social-icons a {
-    color: var(--text-primary);
+    color: #ffffff;
     text-decoration: none;
     width: 45px;
     height: 45px;
@@ -106,5 +106,5 @@
     padding-top: 2.5rem;
     border-top: 1px solid var(--border-color);
     font-size: 0.9rem;
-    opacity: 0.5;
+    opacity: 0.7;
 }

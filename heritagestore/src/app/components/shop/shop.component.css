@@ -47,6 +47,12 @@
     border-color: var(--jamaica-green);
 }
 
+.filters {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
 .filters select {
     padding: 1rem 2rem;
     border-radius: 50px;

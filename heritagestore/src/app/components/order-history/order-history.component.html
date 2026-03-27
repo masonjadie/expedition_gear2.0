@@ -1,5 +1,5 @@
 <section class="section orders-container">
-    <h1>Your Heritage Journey</h1>
+    <h1>Your Adventure History</h1>
     <div class="orders-list" *ngIf="orders.length > 0; else noOrders">
         <div class="order-item" *ngFor="let order of orders">
             <div class="order-meta">
@@ -16,8 +16,8 @@
 
     <ng-template #noOrders>
         <div class="empty-state">
-            <p>You haven't started your heritage story yet.</p>
-            <a routerLink="/shop" class="btn btn-gold">Explore our Collection</a>
+            <p>You haven't started your adventure story yet.</p>
+            <a routerLink="/shop" class="btn btn-gold">Gear Up for the Peak</a>
         </div>
     </ng-template>
 </section>

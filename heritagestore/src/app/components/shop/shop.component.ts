@@ -12,10 +12,12 @@ import { NotificationService } from '../../services/notification.service';
 })
 export class ShopComponent implements OnInit {
   products: any[] = [];
-  apparel: any[] = [];
-  handcrafted: any[] = [];
-  essentials: any[] = [];
-  collectors: any[] = [];
+  filteredProducts: any[] = [];
+  categories: string[] = ['Camping', 'Hiking', 'Apparel'];
+
+  searchQuery: string = '';
+  selectedActivity: string = '';
+  maxPrice: number = 200;
 
   constructor(
     private authService: AuthService,
@@ -28,15 +30,26 @@ export class ShopComponent implements OnInit {
   ngOnInit(): void {
     this.productService.products$.subscribe(products => {
       this.products = products;
-      this.groupProducts();
+      this.applyFilters();
     });
   }
 
-  private groupProducts() {
-    this.apparel = this.products.filter(p => p.category === 'Apparel');
-    this.handcrafted = this.products.filter(p => p.category === 'Handcrafted');
-    this.essentials = this.products.filter(p => p.category === 'Essentials');
-    this.collectors = this.products.filter(p => p.category === 'Collectors');
+  applyFilters() {
+    this.filteredProducts = this.products.filter(p => {
+      const q = this.searchQuery.toLowerCase();
+      const matchSearch = p.name.toLowerCase().includes(q) || (p.description && p.description.toLowerCase().includes(q));
+      
+      let matchCategory = true;
+      if (this.selectedActivity) {
+          // A little fuzzy match just in case
+          matchCategory = p.category?.toLowerCase() === this.selectedActivity.toLowerCase() || 
+                          p.name?.toLowerCase().includes(this.selectedActivity.toLowerCase());
+      }
+      
+      const matchPrice = p.price <= this.maxPrice;
+      
+      return matchSearch && matchCategory && matchPrice;
+    });
   }
 
   onAddToCart(product: any) {
